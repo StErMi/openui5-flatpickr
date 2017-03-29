@@ -5,10 +5,10 @@ module.exports = function(grunt) {
 		dir: {
 			src: 'src',
 			dest: 'dist',
-			css: 'it/designfuture/framework/themes/',
-			css_base: 'it/designfuture/framework/themes/base/library.source.less',
-			css_belize: 'it/designfuture/framework/themes/sap_belize/library.source.less',
-			sap_bluecrystal: 'it/designfuture/framework/themes/sap_bluecrystal/library.source.less'
+			css: 'it/designfuture/flatpickr/themes/',
+			css_base: 'it/designfuture/flatpickr/themes/base/library.source.less',
+			css_belize: 'it/designfuture/flatpickr/themes/sap_belize/library.source.less',
+			sap_bluecrystal: 'it/designfuture/flatpickr/themes/sap_bluecrystal/library.source.less'
 		},
 
 		copy: {
@@ -24,10 +24,10 @@ module.exports = function(grunt) {
 				options: {
 					resources: '<%= dir.src %>',
 					dest: '<%= dir.dest %>',
-					compatVersion: '1.28',
+					compatVersion: '1.44',
 					compress: false
 				},
-				libraries: 'it/designfuture/framework'
+				libraries: 'it/designfuture/flatpickr'
 			}
 		},
 

@@ -2,7 +2,7 @@
  * ${copyright}
  */
 
-// Provides control it.designfuture.framework.FlatDatePicker
+// Provides control it.designfuture.flatpickr.FlatDatePicker
 sap.ui.define([
 		'jquery.sap.global',
 		'sap/m/InputBase',
@@ -25,15 +25,15 @@ sap.ui.define([
 	 * @constructor
 	 * @public
 	 * @since 1.40
-	 * @name it.designfuture.framework.FlatDatePicker
+	 * @name it.designfuture.flatpickr.FlatDatePicker
 	 */
 
-	var FlatDatePicker = InputBase.extend("it.designfuture.framework.FlatDatePicker", /** @lends it.designfuture.framework.FlatDatePicker prototype */ { 
+	var FlatDatePicker = InputBase.extend("it.designfuture.flatpickr.FlatDatePicker", /** @lends it.designfuture.flatpickr.FlatDatePicker prototype */ { 
 		
 		__flatPickr: undefined,
 		
 		metadata : {
-			library: 'it.designfuture.framework',
+			library: 'it.designfuture.flatpickr',
 			properties : {
 				
 				/**

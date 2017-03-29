@@ -11,7 +11,7 @@ sap.ui.define(['jquery.sap.global', 'sap/m/DatePickerRenderer'],
 	 * @static
 	 * @namespace
 	 */
-	var FlatDatePickerRenderer = DatePickerRenderer.extend("it.designfuture.framework.FlatDatePickerRenderer");
+	var FlatDatePickerRenderer = DatePickerRenderer.extend("it.designfuture.flatpickr.FlatDatePickerRenderer");
 	
 	/**
 	 * Add the custom class to render the Date Picker, using the provided {@link sap.ui.core.RenderManager}.

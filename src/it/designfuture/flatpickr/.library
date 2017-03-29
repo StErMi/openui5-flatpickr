@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <library xmlns="http://www.sap.com/sap.ui.library.xsd" >
 
-  <name>it.designfuture.framework</name>
+  <name>it.designfuture.flatpickr</name>
   <vendor>OpenUI5 Flatpickr</vendor>
   <copyright>${copyright}</copyright>
   <version>${version}</version>
