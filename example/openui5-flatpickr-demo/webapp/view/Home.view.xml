@@ -1,0 +1,103 @@
+<mvc:View controllerName="openui5-flatpickr-demo.controller.Home" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:df="it.designfuture.flatpickr">
+	<App>
+		<pages>
+			<Page title="openui5-flatpickr-demo">
+				<content>
+					<Panel>
+						<headerToolbar>
+							<Toolbar>
+								<Title level="H2" text="Date Picker"/>
+							</Toolbar>
+						</headerToolbar>
+						<df:FlatDatePicker 
+							class="sapUiMediumMargin"
+							width="40%"
+							clickOpens="false"
+							dateFormat="d/m/Y"
+						/>
+					</Panel>
+					
+					<Panel>
+						<headerToolbar>
+							<Toolbar>
+								<Title level="H2" text="Date Picker with onChange event binded"/>
+							</Toolbar>
+						</headerToolbar>
+						<df:FlatDatePicker 
+							class="sapUiMediumMargin"
+							width="40%"
+							clickOpens="false"
+							dateFormat="d/m/Y"
+							onChange="handleOnChangeEvent"
+						/>
+					</Panel>
+					
+					<Panel>
+						<headerToolbar>
+							<Toolbar>
+								<Title level="H2" text="DateTime Picker with bindlable value"/>
+							</Toolbar>
+						</headerToolbar>
+						<df:FlatDatePicker 
+							class="sapUiMediumMargin"
+							width="40%"
+							clickOpens="false"
+							dateFormat="d/m/Y H:i"
+							dateValue="{temp>/bindableDate}"
+						/>
+					</Panel>
+					
+					<Panel>
+						<headerToolbar>
+							<Toolbar>
+								<Title level="H2" text="Range Date Picker"/>
+							</Toolbar>
+						</headerToolbar>
+						
+						<df:FlatDatePicker 
+							width="40%"
+							clickOpens="false"
+							dateFormat="d/m/Y"
+							class="sapUiMediumMargin"
+							mode="range"
+						/>
+					</Panel>
+					
+					<Panel>
+						<headerToolbar>
+							<Toolbar>
+								<Title level="H2" text="Date Picker with Time"/>
+							</Toolbar>
+						</headerToolbar>
+						
+						<df:FlatDatePicker 
+							width="40%"
+							clickOpens="false"
+							dateFormat="d/m/Y H:i"
+							class="sapUiMediumMargin"
+							enableTime="true"
+						/>
+					</Panel>
+					
+					<Panel>
+						<headerToolbar>
+							<Toolbar>
+								<Title level="H2" text="Date Picker with Time"/>
+							</Toolbar>
+						</headerToolbar>
+						
+						<df:FlatDatePicker 
+							width="40%"
+							clickOpens="false"
+							dateFormat="d/m/Y H:i"
+							class="sapUiMediumMargin"
+							enableTime="true"
+							mode="range"
+						/>
+					</Panel>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
