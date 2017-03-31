@@ -1,0 +1,25 @@
+{
+  "name": "openui5-flatpickr",
+  "description": "An openui5 custom control to use flatpickr (https://github.com/chmln/flatpickr)",
+  "main": "index.js",
+  "authors": [
+    "Emanuele Ricci <stermi@gmail.com>"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "datepicker",
+    "openui5",
+    "sapui5",
+    "javascript"
+  ],
+  "moduleType": ["amd"],
+  "homepage": "https://github.com/StErMi/openui5-flatpickr",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "example",
+    "test",
+    "tests"
+  ]
+}
