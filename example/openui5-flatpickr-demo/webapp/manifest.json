@@ -51,7 +51,8 @@
 				"sap.ushell": {},
 				"sap.collaboration": {},
 				"sap.ui.comp": {},
-				"sap.uxap": {}
+				"sap.uxap": {},
+				"it.designfuture.flatpickr": {}
 			}
 		},
 		"contentDensities": {
@@ -70,6 +71,9 @@
 			"css": [{
 				"uri": "css/style.css"
 			}]
-		}
+		},
+        "resourceRoots": {
+            "it.designfuture.flatpickr": "./thirdparty/it/designfuture/flatpickr/"
+        }
 	}
 }

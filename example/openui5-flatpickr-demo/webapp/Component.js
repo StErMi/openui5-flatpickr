@@ -16,10 +16,7 @@ sap.ui.define([
 		 * @public
 		 * @override
 		 */
-		init: function() {
-			//Load library
-			sap.ui.getCore().loadLibrary("it.designfuture.flatpickr", "thirdparty/it/designfuture/flatpickr/");
-			
+		init: function() {			
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
 			
