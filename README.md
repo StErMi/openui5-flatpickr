@@ -48,7 +48,7 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 />
 ```
 
-##Parameters
+## Parameters
 
 | Name | Type | Default| Description
 | :---- | :------------------- | :---- | :---------  |
@@ -76,7 +76,7 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | weekNumbers | boolean | false | Enables display of week numbers in calendar
 |
 
-##Events
+## Events
 
 | Name |  Description
 | :---- | :------------------- |
@@ -90,7 +90,7 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | onDayCreate | Take full control of every date cell with the onDayCreate() hook
 |
 
-##Methods
+## Methods
 
 | Name |  Description
 | :---- | :------------------- |
