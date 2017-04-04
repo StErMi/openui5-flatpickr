@@ -107,6 +107,19 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | getSelectedDates | Return an array with selected dates
 |
 
+## Build
+
+If you would like to extend and customize the controllr, you can easily do that but re-building the code with just a simple Grunt command:
+
+```
+grunt build
+```
+
+You just need to take note of two things:
+
+ 1. **compatVersion**: you should type here your project SAPUI5 version. Old projects (1.28.x) will generate a *library-preload.json*, new version will instead create a *library-prelaod.js*
+ 2. **openui5_theme**: add addictional files for each theme you are supporting in your application
+
 ## Credits
 
 Emanuele Ricci
