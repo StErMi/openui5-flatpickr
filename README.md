@@ -74,7 +74,6 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | time_24hr | boolean | false | Displays time picker in 24 hour mode without AM/PM selection when enabled
 | utc | boolean | false | When true, dates will parsed, formatted, and displayed in UTC. It's recommended that date strings contain the timezone, but not necessary
 | weekNumbers | boolean | false | Enables display of week numbers in calendar
-|
 
 ## Events
 
@@ -88,7 +87,6 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | onReady | onReady gets triggered once the calendar is in a ready state
 | onValueUpdate | onValueUpdate gets triggered when the input value is updated with a new date string
 | onDayCreate | Take full control of every date cell with the onDayCreate() hook
-|
 
 ## Methods
 
@@ -105,7 +103,6 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | setDate | Sets the current selected date(s) todate, which can be a date string, a Date, or an Array of the Dates. Optionally, pass true as the second argument to force any onChange events to fire
 | toggle | Shows/opens the calendar if its closed, hides/closes it otherwise
 | getSelectedDates | Return an array with selected dates
-|
 
 ## Build
 
