@@ -6,7 +6,7 @@
 sap.ui.define([
 		'jquery.sap.global',
 		'sap/m/InputBase',
-		'./flatpickr',
+		'./3rdparty/flatpickr',
 		'./library'
 	], function(jQuery, InputBase, flatpickr, library) {
 	"use strict";
