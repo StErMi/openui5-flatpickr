@@ -12,8 +12,13 @@ sap.ui.define([
 		///////////////////////////////////////////////////////////////////////
 		
 		onInit: function() {
+			var now = new Date();
 			this.getView().setModel( new JSONModel({}), "temp");
-			this.getView().getModel("temp").setProperty("/bindableDate", new Date());
+			this.getView().getModel("temp").setProperty("/bindableDate", now);
+			this.getView().getModel("temp").setProperty("/disabledDates", [
+				new Date(now.getTime() + 24 * 60 * 60 * 1000),
+				new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000)
+			]);
 		},
 		
 		///////////////////////////////////////////////////////////////////////

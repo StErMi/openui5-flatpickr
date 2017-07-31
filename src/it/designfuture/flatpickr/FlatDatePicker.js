@@ -75,16 +75,37 @@ sap.ui.define([
 				dateFormat : {type : "string", group : "Appearance", defaultValue : "Y-m-d"},
 				
 				/**
-				 * Set the initial selected date. 
-				 * Same as preloading a date string into an input's value attribute, but can also handle a Date object.
+				 * Sets the initial selected date(s).
+				 * If you're using mode: "multiple" or a range calendar supply an Array of Date objects or an Array of date strings which follow your dateFormat.
+				 * Otherwise, you can supply a single Date object or a date string.
 				 */
 				dateValue : {type : "object", group : "Appearance", defaultValue : null, bindable: "bindable"},
 				
+				/**
+				 * Initial value of the hour element.
+				 */
+				hourValue : {type : "object", group : "Appearance", defaultValue : 12, bindable: "bindable"},
+				
+				/**
+				 * Initial value of the minute element.
+				 */
+				minuteValue : {type : "object", group : "Appearance", defaultValue : 0, bindable: "bindable"},
+				
+				/**
+				 * Arrays of dates object to be disabled
+				 */
+				disabledDates : {type : "object[]", group : "Appearance", defaultValue : [], bindable: "bindable"},
+
 				/**
 				 * Set disableMobile to true to always use the non-native picker.
 				 * By default, Flatpickr utilizes native datetime widgets unless certain options (e.g. disable) are used.
 				 */
 				disableMobile : {type : "boolean", group : "Appearance", defaultValue : false},
+				
+				/**
+				 * Arrays of dates object to be enabled
+				 */
+				enabledDates : {type : "object[]", group : "Appearance", defaultValue : [], bindable: "bindable"},
 				
 				/**
 				 * Enables time picker
@@ -147,12 +168,6 @@ sap.ui.define([
 				 * Displays time picker in 24 hour mode without AM/PM selection when enabled.
 				 */
 				time_24hr : {type : "boolean", group : "Appearance", defaultValue : false},
-				
-				/**
-				 * When true, dates will parsed, formatted, and displayed in UTC. 
-				 * It's recommended that date strings contain the timezone, but not necessary.
-				 */
-				utc : {type : "boolean", group : "Appearance", defaultValue : false},
 				
 				/**
 				 * Enables display of week numbers in calendar.
@@ -347,7 +362,7 @@ sap.ui.define([
 		
 		onAfterRendering: function() {
 			var that = this;
-			this.__flatPickr = new Flatpickr($("#"+this.getId()+".flatpickrCustomControl")[0], {
+			this.__flatPickr = $("#"+this.getId()+".flatpickrCustomControl").flatpickr({
 			    altFormat: this.getAltFormat(),
 			    altInput: this.getAltInput(),
 			    altInputClass: this.getAltInputClass(),
@@ -355,7 +370,11 @@ sap.ui.define([
 			    clickOpens: this.getClickOpens(),
 			    dateFormat: this.getDateFormat(),
 			    defaultDate: this.getDateValue(),
-			    disableMobile: this.getDisableMobile(),
+			    defaultHour: this.getHourValue(),
+			    defaultMinute: this.getMinuteValue(),
+			    disable: this.getDisabledDates(),
+				disableMobile: this.getDisableMobile(),
+			    enable: this.getEnabledDates(),
 			    enableTime: this.getEnableTime(),
 			    enableSeconds: this.getEnableSeconds(),
 			    hourIncrement: this.getHourIncrement(),
@@ -368,7 +387,6 @@ sap.ui.define([
 			    shorthandCurrentMonth: this.getShorthandCurrentMonth(),
 			    static: this.getStatic(),
 			    time_24hr: this.getTime_24hr(),
-			    utc: this.getUtc(),
 			    weekNumbers: this.getWeekNumbers(),
 			    wrap: true, // force wrap to true
 			    
@@ -409,7 +427,7 @@ sap.ui.define([
 		* Resets the selected dates (if any) and clears the input.
 		* @public
 		*/
-		clear: function() {
+		clearDatePicker: function() {
 			if( this.__flatPickr ) {
 				this.__flatPickr.clear();
 			}
@@ -419,7 +437,7 @@ sap.ui.define([
 		* Closes the calendar.
 		* @public
 		*/
-		close: function() {
+		closeDatePicker: function() {
 			if( this.__flatPickr ) {
 				this.__flatPickr.close();
 			}
@@ -429,7 +447,7 @@ sap.ui.define([
 		* Destroys the Flatpickr instance, cleans up - removes event listeners, restores inputs, etc.
 		* @public
 		*/
-		destroy: function() {
+		destroyDatePicker: function() {
 			if( this.__flatPickr ) {
 				this.__flatPickr.destroy();
 			}
@@ -466,7 +484,7 @@ sap.ui.define([
 		* Shows/opens the calendar.
 		* @public
 		*/
-		open: function() {
+		openDatePicker: function() {
 			if( this.__flatPickr ) {
 				this.__flatPickr.open();
 			}
@@ -488,7 +506,7 @@ sap.ui.define([
 		* Redraws the calendar. Shouldn’t be necessary in most cases
 		* @public
 		*/
-		redraw: function() {
+		redrawDatePicker: function() {
 			if( this.__flatPickr ) {
 				this.__flatPickr.redraw();
 			}
@@ -509,7 +527,7 @@ sap.ui.define([
 		* Shows/opens the calendar if its closed, hides/closes it otherwise
 		* @public
 		*/
-		toggle: function() {
+		toggleDatePicker: function() {
 			this.__flatPickr.toggle();
 		},
 		
@@ -616,11 +634,43 @@ sap.ui.define([
 			return this;
 		},
 		
+		setHourValue: function(value) {
+			if( this.__flatPickr ) {
+				this.__flatPickr.set("defaultHour", value);
+			}
+			this.setProperty("hourValue", value, false);
+			return this;
+		},
+		
+		setMinuteValue: function(value) {
+			if( this.__flatPickr ) {
+				this.__flatPickr.set("defaultMinute", value);
+			}
+			this.setProperty("minuteValue", value, false);
+			return this;
+		},
+		
+		setDisabledDates: function(value) {
+			if( this.__flatPickr ) {
+				this.__flatPickr.set("disable", value);
+			}
+			this.setProperty("disabledDates", value, false);
+			return this;
+		},
+		
 		setDisableMobile: function(value) {
 			if( this.__flatPickr ) {
 				this.__flatPickr.set("disableMobile", value);
 			}
 			this.setProperty("disableMobile", value, false);
+			return this;
+		},
+		
+		setEnabledDates: function(value) {
+			if( this.__flatPickr ) {
+				this.__flatPickr.set("enable", value);
+			}
+			this.setProperty("enabledDates", value, false);
 			return this;
 		},
 		
@@ -720,14 +770,6 @@ sap.ui.define([
 			return this;
 		},
 		
-		setUtc: function(value) {
-			if( this.__flatPickr ) {
-				this.__flatPickr.set("utc", value);
-			}
-			this.setProperty("utc", value, false);
-			return this;
-		},
-		
 		setWeekNumbers: function(value) {
 			if( this.__flatPickr ) {
 				this.__flatPickr.set("weekNumbers", value);
@@ -747,9 +789,9 @@ sap.ui.define([
 		InputBase.prototype.exit.apply(this, arguments);
 		if (this.__flatPickr) {
 			if (this.__flatPickr.isOpen) {
-				this.close();
+				this.closeDatePicker();
 			}
-			this.destroy();
+			this.destroyDatePicker();
 		}
 		this.__flatPickr = undefined;
 	};
