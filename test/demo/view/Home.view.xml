@@ -7,7 +7,7 @@
 					<Panel>
 						<headerToolbar>
 							<Toolbar>
-								<Title level="H2" text="Date Picker"/>
+								<Title level="H2" text="{i18n>example1Title}" />
 							</Toolbar>
 						</headerToolbar>
 						<df:FlatDatePicker 
@@ -21,7 +21,7 @@
 					<Panel>
 						<headerToolbar>
 							<Toolbar>
-								<Title level="H2" text="Date Picker with onChange event binded"/>
+								<Title level="H2" text="{i18n>example2Title}" />
 							</Toolbar>
 						</headerToolbar>
 						<df:FlatDatePicker 
@@ -36,7 +36,7 @@
 					<Panel>
 						<headerToolbar>
 							<Toolbar>
-								<Title level="H2" text="DateTime Picker with bindlable value"/>
+								<Title level="H2" text="{i18n>example3Title}" />
 							</Toolbar>
 						</headerToolbar>
 						<df:FlatDatePicker 
@@ -51,7 +51,7 @@
 					<Panel>
 						<headerToolbar>
 							<Toolbar>
-								<Title level="H2" text="Range Date Picker"/>
+								<Title level="H2" text="{i18n>example4Title}" />
 							</Toolbar>
 						</headerToolbar>
 						
@@ -67,7 +67,7 @@
 					<Panel>
 						<headerToolbar>
 							<Toolbar>
-								<Title level="H2" text="Date Picker with Time"/>
+								<Title level="H2" text="{i18n>example5Title}" />
 							</Toolbar>
 						</headerToolbar>
 						
@@ -83,7 +83,7 @@
 					<Panel>
 						<headerToolbar>
 							<Toolbar>
-								<Title level="H2" text="Date Picker with Time"/>
+								<Title level="H2" text="{i18n>example6Title}" />
 							</Toolbar>
 						</headerToolbar>
 						
@@ -94,6 +94,22 @@
 							class="sapUiMediumMargin"
 							enableTime="true"
 							mode="range"
+						/>
+					</Panel>
+					
+					<Panel>
+						<headerToolbar>
+							<Toolbar>
+								<Title level="H2" text="{i18n>example7Title}" />
+							</Toolbar>
+						</headerToolbar>
+						
+						<df:FlatDatePicker 
+							width="40%"
+							clickOpens="false"
+							dateFormat="d/m/Y H:i"
+							class="sapUiMediumMargin"
+							disabledDates="{temp>/disabledDates}"
 						/>
 					</Panel>
 				</content>

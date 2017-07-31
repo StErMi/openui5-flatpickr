@@ -34,6 +34,6 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^19.0.0",
     "grunt-openui5": "^0.11.0",
-    "flatpickr": "^2.6.1"
+    "flatpickr": "^3.0.6"
   }
 }
