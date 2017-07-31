@@ -4,13 +4,6 @@
 /*!
  * ${copyright}
  */
-/* ====================== */
-/* Shared CSS Base theme  */
-/* ====================== */
-/* ========================================================= */
-/* CSS for control it.designfuture.framework/FlatDatePicker  */
-/* Base theme                                                */
-/* ========================================================= */
 .flatpickr-calendar {
   background: transparent;
   overflow: hidden;
@@ -834,3 +827,6 @@ span.flatpickr-weekday {
     opacity: 1;
   }
 }
+
+/* Inline theming parameters */
+#sap-ui-theme-it\.designfuture\.flatpickr { background-image: url('data:text/plain;utf-8,%7B%7D'); }
