@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 		dir: {
 			src: 'src',
 			dest: 'dist',
+			demo: 'demo',
 			src_flatpickr: 'node_modules/flatpickr/dist',
 			bower_components: 'bower_components',
 			css: 'it/designfuture/flatpickr/themes/',
@@ -43,8 +44,14 @@ module.exports = function(grunt) {
 					'<%= dir.bower_components %>/openui5-sap.ui.core/resources',
 					'<%= dir.bower_components %>/openui5-sap.m/resources',
 					'<%= dir.bower_components %>/openui5-sap.ui.layout/resources',
-					'<%= dir.bower_components %>/openui5-themelib_sap_belize/resources'
-				]
+					'<%= dir.bower_components %>/openui5-themelib_sap_belize/resources',
+				],
+				testresources: [
+					'<%= dir.bower_components %>/openui5-sap.ui.core/test-resources',
+					'<%= dir.bower_components %>/openui5-sap.m/test-resources',
+					'<%= dir.bower_components %>/openui5-sap.ui.layout/test-resources',
+					'<%= dir.bower_components %>/openui5-themelib_sap_belize/test-resources'
+				],
 			},
 			src: {
 				options: {
@@ -75,27 +82,25 @@ module.exports = function(grunt) {
 
 		openui5_theme: {
 			library: {
-		    files: [
-		      {
-		        expand: true,
-		        cwd: '<%= dir.src %>',
-		        src: '<%= dir.css_base %>',
-		        dest: '<%= dir.dest %>'
-		      },
-		      {
-		        expand: true,
-		        cwd: '<%= dir.src %>',
-		        src: '<%= dir.css_belize %>',
-		        dest: '<%= dir.dest %>'
-		      },
-		      {
-		        expand: true,
-		        cwd: '<%= dir.src %>',
-		        src: '<%= dir.sap_bluecrystal %>',
-		        dest: '<%= dir.dest %>'
-		      }
-		    ]
-		  }},
+				files: [
+					{
+						expand: true,
+						cwd: '<%= dir.src %>',
+						src: '**/themes/*/library.source.less',
+						dest: '<%= dir.dest %>'
+					}
+				],
+				options: {
+					rootPaths: [
+						'<%= dir.src %>',
+						'node_modules'
+					],
+					library: {
+						name: 'it.designfuture.flatpickr'
+					}
+				}
+			}
+		}
 	});
 
 	// These publins provide necessary tasks
