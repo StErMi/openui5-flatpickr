@@ -2,11 +2,11 @@
 
 openui5-flatpickr is a SAPUI5 Custom Control that wraps [flatpickr Date Picker](https://github.com/chmln/flatpickr)
 
-![flatpickr example with time support](https://raw.githubusercontent.com/StErMi/openui5-flatpickr/master/example/openui5-flatpickr-demo/webapp/images/openui5_flatpickr.png)
+![flatpickr example with time support](https://raw.githubusercontent.com/StErMi/openui5-flatpickr/master/test/demo/images/openui5_flatpickr.png)
 
 ## Demo
 
-You can checkout a demo with different configurations here: https://stermi.github.io/openui5-flatpickr/example/openui5-flatpickr-demo/webapp/
+You can checkout a demo with different configurations here: https://stermi.github.io/openui5-flatpickr/test/demo/
 
 ## Usage
 
@@ -112,6 +112,7 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 If you would like to extend and customize the controllr, you can easily do that but re-building the code with just a simple Grunt command:
 
 ```
+npm install
 grunt build
 ```
 
