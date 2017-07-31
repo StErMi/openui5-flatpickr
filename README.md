@@ -95,16 +95,16 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 
 | Name |  Description
 | :---- | :------------------- |
-| clear | Resets the selected dates (if any) and clears the input
-| open | Shows/opens the calendar
-| close | Closes the calendar
-| destroy | Destroys the Flatpickr instance, cleans up - removes event listeners, restores inputs, etc
+| clearDatePicker | Resets the selected dates (if any) and clears the input
+| openDatePicker | Shows/opens the calendar
+| closeDatePicker | Closes the calendar
+| destroyDatePicker | Destroys the Flatpickr instance, cleans up - removes event listeners, restores inputs, etc
 | formatDate | Return a formatted date
 | jumpToDate | Sets the calendar view to the year and month ofdate, which can be a date string, a Date, or nothing. If date is undefined, the view is set to the latest selected date, the minDate, or today’s date
 | parseDate | Parses a date string or a timestamp, and returns a Date
-| redraw | Redraws the calendar. Shouldn’t be necessary in most cases
+| redrawDatePicker | Redraws the calendar. Shouldn’t be necessary in most cases
 | setDate | Sets the current selected date(s) todate, which can be a date string, a Date, or an Array of the Dates. Optionally, pass true as the second argument to force any onChange events to fire
-| toggle | Shows/opens the calendar if its closed, hides/closes it otherwise
+| toggleDatePicker | Shows/opens the calendar if its closed, hides/closes it otherwise
 | getSelectedDates | Return an array with selected dates
 
 ## Build
