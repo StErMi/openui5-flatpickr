@@ -23,9 +23,6 @@ sap.ui.define([
 		 */
 
 
-		// Include custom css
-		sap.ui.getCore().includeLibraryTheme("it.designfuture.flatpickr");
-		
 		// delegate further initialization of this library to the Core
 		sap.ui.getCore().initLibrary({
 			name : "it.designfuture.flatpickr",

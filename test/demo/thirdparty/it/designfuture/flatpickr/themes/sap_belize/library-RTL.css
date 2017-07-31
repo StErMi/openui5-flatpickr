@@ -1,13 +1,9 @@
 /*!
  * ${copyright}
  */
-/* ====================== */
-/* Shared CSS Base theme  */
-/* ====================== */
-/* ========================================================= */
-/* CSS for control it.designfuture.framework/FlatDatePicker  */
-/* Base theme                                                */
-/* ========================================================= */
+/*!
+ * ${copyright}
+ */
 .flatpickr-calendar {
   background: transparent;
   overflow: hidden;
@@ -16,6 +12,7 @@
   visibility: hidden;
   text-align: center;
   padding: 0;
+  -webkit-animation: none;
   animation: none;
   direction: ltr;
   border: 0;
@@ -25,8 +22,10 @@
   position: absolute;
   width: 315px;
   box-sizing: border-box;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
   background: #fff;
-  box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgba(0, 0, 0, 0.08);
+  box-shadow: -1px 0 0 #e6e6e6, 1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgba(0, 0, 0, 0.08);
 }
 .flatpickr-calendar.open,
 .flatpickr-calendar.inline {
@@ -37,8 +36,11 @@
 }
 .flatpickr-calendar.open {
   display: inline-block;
-  animation: flatpickrFadeInDown 300ms cubic-bezier(0, 1, 0.5, 1);
   z-index: 99999;
+}
+.flatpickr-calendar.animate.open {
+  -webkit-animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .flatpickr-calendar.inline {
   display: block;
@@ -56,6 +58,15 @@
 .flatpickr-calendar.hasWeeks {
   width: auto;
 }
+.flatpickr-calendar .hasWeeks .dayContainer,
+.flatpickr-calendar .hasTime .dayContainer {
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.flatpickr-calendar .hasWeeks .dayContainer {
+  border-right: 0;
+}
 .flatpickr-calendar.showTimeInput.hasTime .flatpickr-time {
   height: 40px;
   border-top: 1px solid #e6e6e6;
@@ -72,12 +83,12 @@
   content: '';
   height: 0;
   width: 0;
-  left: 22px;
+  right: 22px;
 }
 .flatpickr-calendar.rightMost:before,
 .flatpickr-calendar.rightMost:after {
-  left: auto;
-  right: 22px;
+  right: auto;
+  left: 22px;
 }
 .flatpickr-calendar:before {
   border-width: 5px;
@@ -95,7 +106,7 @@
   border-bottom-color: #e6e6e6;
 }
 .flatpickr-calendar.arrowTop:after {
-  border-bottom-color: #ffffff;
+  border-bottom-color: #fff;
 }
 .flatpickr-calendar.arrowBottom:before,
 .flatpickr-calendar.arrowBottom:after {
@@ -105,7 +116,10 @@
   border-top-color: #e6e6e6;
 }
 .flatpickr-calendar.arrowBottom:after {
-  border-top-color: #ffffff;
+  border-top-color: #fff;
+}
+.flatpickr-calendar:focus {
+  outline: 0;
 }
 .flatpickr-wrapper {
   position: relative;
@@ -116,19 +130,25 @@
   color: rgba(0, 0, 0, 0.9);
   fill: rgba(0, 0, 0, 0.9);
   height: 28px;
-  line-height: 24px;
+  line-height: 1;
   text-align: center;
   position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+  overflow: hidden;
 }
 .flatpickr-prev-month,
 .flatpickr-next-month {
   text-decoration: none;
   cursor: pointer;
   position: absolute;
-  top: 10px;
-  height: 16px;
+  top: 0px;
   line-height: 16px;
+  height: 28px;
+  padding: 10px calc(2.07%);
+  z-index: 3;
 }
 .flatpickr-prev-month i,
 .flatpickr-next-month i {
@@ -138,9 +158,13 @@
 .flatpickr-next-month.flatpickr-prev-month {
   /*
         /*rtl:begin:ignore*/
-  left: calc(2.07%);
+  /*
+        */
+  right: 0;
   /*
         /*rtl:end:ignore*/
+  /*
+        */
 }
 /*
         /*rtl:begin:ignore*/
@@ -150,9 +174,13 @@
 .flatpickr-next-month.flatpickr-next-month {
   /*
         /*rtl:begin:ignore*/
-  right: calc(2.07%);
+  /*
+        */
+  left: 0;
   /*
         /*rtl:end:ignore*/
+  /*
+        */
 }
 /*
         /*rtl:begin:ignore*/
@@ -172,7 +200,7 @@
 }
 .flatpickr-prev-month svg path,
 .flatpickr-next-month svg path {
-  transition: fill .1s;
+  transition: fill 0.1s;
   fill: inherit;
 }
 .numInputWrapper {
@@ -188,9 +216,9 @@
 }
 .numInputWrapper span {
   position: absolute;
-  right: 0;
+  left: 0;
   width: 14px;
-  padding: 0 4px 0 2px;
+  padding: 0 2px 0 4px;
   height: 50%;
   line-height: 50%;
   opacity: 0;
@@ -215,16 +243,16 @@
   border-bottom: 0;
 }
 .numInputWrapper span.arrowUp:after {
-  border-left: 4px solid transparent;
   border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
   border-bottom: 4px solid rgba(57, 57, 57, 0.6);
 }
 .numInputWrapper span.arrowDown {
   top: 50%;
 }
 .numInputWrapper span.arrowDown:after {
-  border-left: 4px solid transparent;
   border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
   border-top: 4px solid rgba(57, 57, 57, 0.6);
 }
 .numInputWrapper span svg {
@@ -247,17 +275,45 @@
   color: inherit;
   position: absolute;
   width: 75%;
-  left: 12.5%;
-  top: 5px;
+  right: 12.5%;
+  padding: 6.16px 0 0 0;
+  line-height: 1;
+  height: 28px;
   display: inline-block;
   text-align: center;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+}
+.flatpickr-current-month.slideLeft {
+  -webkit-transform: translate3d(100%, 0px, 0px);
+  transform: translate3d(100%, 0px, 0px);
+  -webkit-animation: fpFadeOut 400ms ease, fpSlideLeft 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeOut 400ms ease, fpSlideLeft 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.flatpickr-current-month.slideLeftNew {
+  -webkit-transform: translate3d(-100%, 0px, 0px);
+  transform: translate3d(-100%, 0px, 0px);
+  -webkit-animation: fpFadeIn 400ms ease, fpSlideLeftNew 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeIn 400ms ease, fpSlideLeftNew 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.flatpickr-current-month.slideRight {
+  -webkit-transform: translate3d(-100%, 0px, 0px);
+  transform: translate3d(-100%, 0px, 0px);
+  -webkit-animation: fpFadeOut 400ms ease, fpSlideRight 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeOut 400ms ease, fpSlideRight 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.flatpickr-current-month.slideRightNew {
+  -webkit-transform: translate3d(0, 0, 0px);
+  transform: translate3d(0, 0, 0px);
+  -webkit-animation: fpFadeIn 400ms ease, fpSlideRightNew 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeIn 400ms ease, fpSlideRightNew 400ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .flatpickr-current-month span.cur-month {
   font-family: inherit;
   font-weight: 700;
   color: inherit;
   display: inline-block;
-  margin-left: 7px;
+  margin-right: 0.5ch;
   padding: 0;
 }
 .flatpickr-current-month span.cur-month:hover {
@@ -279,9 +335,9 @@
   box-sizing: border-box;
   color: inherit;
   cursor: default;
-  padding: 0 0 0 .5ch;
+  padding: 0 0.5ch 0 0;
   margin: 0;
-  display: inline;
+  display: inline-block;
   font-size: inherit;
   font-family: inherit;
   font-weight: 300;
@@ -305,24 +361,88 @@
   background: transparent;
   text-align: center;
   overflow: hidden;
+  width: 315px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 28px;
 }
-.flatpickr-days,
+span.flatpickr-weekday {
+  cursor: default;
+  font-size: 90%;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+  display: block;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-weight: bolder;
+}
+.dayContainer,
 .flatpickr-weeks {
   padding: 1px 0 0 0;
 }
 .flatpickr-days {
+  position: relative;
+  overflow: hidden;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 315px;
+}
+.flatpickr-days:focus {
+  outline: 0;
+}
+.dayContainer {
   padding: 0;
   outline: 0;
   text-align: left;
   width: 315px;
+  min-width: 315px;
+  max-width: 315px;
   box-sizing: border-box;
   display: inline-block;
   display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   -ms-flex-pack: justify;
+  -webkit-justify-content: space-around;
   justify-content: space-around;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+  opacity: 1;
+}
+.flatpickr-calendar.animate .dayContainer.slideLeft {
+  -webkit-animation: fpFadeOut 400ms cubic-bezier(0.23, 1, 0.32, 1), fpSlideLeft 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeOut 400ms cubic-bezier(0.23, 1, 0.32, 1), fpSlideLeft 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.flatpickr-calendar.animate .dayContainer.slideLeft,
+.flatpickr-calendar.animate .dayContainer.slideLeftNew {
+  -webkit-transform: translate3d(100%, 0px, 0px);
+  transform: translate3d(100%, 0px, 0px);
+}
+.flatpickr-calendar.animate .dayContainer.slideLeftNew {
+  -webkit-animation: fpFadeIn 400ms cubic-bezier(0.23, 1, 0.32, 1), fpSlideLeft 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeIn 400ms cubic-bezier(0.23, 1, 0.32, 1), fpSlideLeft 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.flatpickr-calendar.animate .dayContainer.slideRight {
+  -webkit-animation: fpFadeOut 400ms cubic-bezier(0.23, 1, 0.32, 1), fpSlideRight 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeOut 400ms cubic-bezier(0.23, 1, 0.32, 1), fpSlideRight 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transform: translate3d(-100%, 0px, 0px);
+  transform: translate3d(-100%, 0px, 0px);
+}
+.flatpickr-calendar.animate .dayContainer.slideRightNew {
+  -webkit-animation: fpFadeIn 400ms cubic-bezier(0.23, 1, 0.32, 1), fpSlideRightNew 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fpFadeIn 400ms cubic-bezier(0.23, 1, 0.32, 1), fpSlideRightNew 400ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .flatpickr-day {
   background: none;
@@ -333,6 +453,8 @@
   cursor: pointer;
   font-weight: 400;
   width: 14.2857143%;
+  -webkit-flex-basis: 14.2857143%;
+  -ms-flex-preferred-size: 14.2857143%;
   flex-basis: 14.2857143%;
   max-width: 40px;
   height: 40px;
@@ -340,6 +462,8 @@
   margin: 0;
   display: inline-block;
   position: relative;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
 }
@@ -367,11 +491,14 @@
 .flatpickr-day.today:focus {
   border-color: #959ea9;
   background: #959ea9;
-  color: #ffffff;
+  color: #fff;
 }
 .flatpickr-day.selected,
 .flatpickr-day.startRange,
 .flatpickr-day.endRange,
+.flatpickr-day.selected.inRange,
+.flatpickr-day.startRange.inRange,
+.flatpickr-day.endRange.inRange,
 .flatpickr-day.selected:focus,
 .flatpickr-day.startRange:focus,
 .flatpickr-day.endRange:focus,
@@ -385,18 +512,24 @@
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
   background: #569ff7;
+  box-shadow: none;
   color: #fff;
   border-color: #569ff7;
 }
 .flatpickr-day.selected.startRange,
 .flatpickr-day.startRange.startRange,
 .flatpickr-day.endRange.startRange {
-  border-radius: 50px 0 0 50px;
+  border-radius: 0 50px 50px 0;
 }
 .flatpickr-day.selected.endRange,
 .flatpickr-day.startRange.endRange,
 .flatpickr-day.endRange.endRange {
-  border-radius: 0 50px 50px 0;
+  border-radius: 50px 0 0 50px;
+}
+.flatpickr-day.selected.startRange + .endRange,
+.flatpickr-day.startRange.startRange + .endRange,
+.flatpickr-day.endRange.startRange + .endRange {
+  box-shadow: 10px 0 0 #569ff7;
 }
 .flatpickr-day.selected.startRange.endRange,
 .flatpickr-day.startRange.startRange.endRange,
@@ -405,7 +538,7 @@
 }
 .flatpickr-day.inRange {
   border-radius: 0;
-  box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
+  box-shadow: 5px 0 0 #e6e6e6, -5px 0 0 #e6e6e6;
 }
 .flatpickr-day.disabled,
 .flatpickr-day.disabled:hover {
@@ -423,35 +556,25 @@
   border-color: transparent;
   cursor: default;
 }
-span.flatpickr-weekday {
-  cursor: default;
-  font-size: 90%;
-  color: rgba(0, 0, 0, 0.54);
-  height: 27.333333333333332px;
-  line-height: 24px;
-  background: transparent;
-  text-align: center;
-  display: block;
-  float: left;
-  width: 14.28%;
-  font-weight: bold;
-  margin: 0;
-  padding-top: 3.33333333px;
+.flatpickr-day.week.selected {
+  border-radius: 0;
+  box-shadow: 5px 0 0 #569ff7, -5px 0 0 #569ff7;
 }
 .rangeMode .flatpickr-day {
   margin-top: 1px;
 }
 .flatpickr-weekwrapper {
   display: inline-block;
-  float: left;
+  float: right;
 }
 .flatpickr-weekwrapper .flatpickr-weeks {
-  padding: 1px 12px 0 12px;
-  box-shadow: 1px 0 0 #e6e6e6;
+  padding: 0 12px;
+  box-shadow: -1px 0 0 #e6e6e6;
 }
 .flatpickr-weekwrapper .flatpickr-weekday {
   float: none;
   width: 100%;
+  line-height: 28px;
 }
 .flatpickr-weekwrapper span.flatpickr-day {
   display: block;
@@ -460,6 +583,8 @@ span.flatpickr-weekday {
 }
 .flatpickr-innerContainer {
   display: block;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   box-sizing: border-box;
   overflow: hidden;
@@ -478,7 +603,8 @@ span.flatpickr-weekday {
   max-height: 40px;
   box-sizing: border-box;
   overflow: hidden;
-  transition: height 0.33s cubic-bezier(0, 1, 0.5, 1);
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 .flatpickr-time:after {
@@ -487,10 +613,12 @@ span.flatpickr-weekday {
   clear: both;
 }
 .flatpickr-time .numInputWrapper {
+  -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   width: 40%;
   height: 40px;
-  float: left;
+  float: right;
 }
 .flatpickr-time .numInputWrapper span.arrowUp:after {
   border-bottom-color: #393939;
@@ -535,12 +663,19 @@ span.flatpickr-weekday {
 .flatpickr-time .flatpickr-am-pm {
   height: inherit;
   display: inline-block;
-  float: left;
+  float: right;
   line-height: inherit;
   color: #393939;
   font-weight: bold;
   width: 2%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
 }
 .flatpickr-time .flatpickr-am-pm {
   outline: 0;
@@ -553,63 +688,145 @@ span.flatpickr-weekday {
 .flatpickr-time .flatpickr-am-pm:focus {
   background: #f0f0f0;
 }
-.hasWeeks .flatpickr-days,
-.hasTime .flatpickr-days {
-  border-bottom: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.hasWeeks .flatpickr-days {
-  border-left: 0;
-}
-@media all and (-ms-high-contrast: none) {
-  .flatpickr-month {
-    padding: 0;
-  }
-  .flatpickr-month svg {
-    top: 0 !important;
-  }
-}
 .flatpickr-input[readonly] {
   cursor: pointer;
 }
-@-moz-keyframes flatpickrFadeInDown {
+@-webkit-keyframes fpFadeInDown {
   from {
     opacity: 0;
+    -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0);
   }
   to {
     opacity: 1;
-    transform: none;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
-@-webkit-keyframes flatpickrFadeInDown {
+@keyframes fpFadeInDown {
   from {
     opacity: 0;
+    -webkit-transform: translate3d(0, -20px, 0);
     transform: translate3d(0, -20px, 0);
   }
   to {
     opacity: 1;
-    transform: none;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
-@-o-keyframes flatpickrFadeInDown {
+@-webkit-keyframes fpSlideLeft {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(100%, 0px, 0px);
+    transform: translate3d(100%, 0px, 0px);
+  }
+}
+@keyframes fpSlideLeft {
+  from {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(100%, 0px, 0px);
+    transform: translate3d(100%, 0px, 0px);
+  }
+}
+@-webkit-keyframes fpSlideLeftNew {
+  from {
+    -webkit-transform: translate3d(-100%, 0px, 0px);
+    transform: translate3d(-100%, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+@keyframes fpSlideLeftNew {
+  from {
+    -webkit-transform: translate3d(-100%, 0px, 0px);
+    transform: translate3d(-100%, 0px, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+@-webkit-keyframes fpSlideRight {
+  from {
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(-100%, 0px, 0px);
+    transform: translate3d(-100%, 0px, 0px);
+  }
+}
+@keyframes fpSlideRight {
+  from {
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(-100%, 0px, 0px);
+    transform: translate3d(-100%, 0px, 0px);
+  }
+}
+@-webkit-keyframes fpSlideRightNew {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0px);
+    transform: translate3d(100%, 0, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+}
+@keyframes fpSlideRightNew {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0px);
+    transform: translate3d(100%, 0, 0px);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0px);
+    transform: translate3d(0, 0, 0px);
+  }
+}
+@-webkit-keyframes fpFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fpFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fpFadeIn {
   from {
     opacity: 0;
-    transform: translate3d(0, -20px, 0);
   }
   to {
     opacity: 1;
-    transform: none;
   }
 }
-@keyframes flatpickrFadeInDown {
+@keyframes fpFadeIn {
   from {
     opacity: 0;
-    transform: translate3d(0, -20px, 0);
   }
   to {
     opacity: 1;
-    transform: none;
   }
 }
+
+/* Inline theming parameters */
+#sap-ui-theme-it\.designfuture\.flatpickr { background-image: url('data:text/plain;utf-8,%7B%7D'); }

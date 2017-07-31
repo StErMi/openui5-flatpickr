@@ -9,9 +9,12 @@
   <documentation>Custom Control that wrap flatpickr's DatePicker</documentation>
   
   <dependencies>
-	<dependency>
-	  <libraryName>sap.ui.core</libraryName>
-	</dependency>
+    <dependency>
+      <libraryName>sap.ui.core</libraryName>
+    </dependency>
+    <dependency>
+      <libraryName>sap.m</libraryName>
+    </dependency>
   </dependencies>
   
   <appData>

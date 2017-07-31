@@ -1,10 +1,13 @@
 module.exports = function(grunt) {
 
 	grunt.initConfig({
-
 		dir: {
 			src: 'src',
 			dest: 'dist',
+			demo: 'test/demo',
+			src_flatpickr: 'node_modules/flatpickr/dist',
+			bower_components: 'bower_components',
+			node_modules: 'node_modules',
 			css: 'it/designfuture/flatpickr/themes/',
 			css_base: 'it/designfuture/flatpickr/themes/base/library.source.less',
 			css_belize: 'it/designfuture/flatpickr/themes/sap_belize/library.source.less',
@@ -12,59 +15,127 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-
+			main: {
+				expand: true,
+				cwd: '<%= dir.dest %>/',
+				src: ['**'],
+				dest: '<%= dir.demo %>/thirdparty/',
+			},
 		},
 
 		clean: {
 			dist: '<%= dir.dest %>/**'
 		},
 
-		openui5_preload: {
-			library: {
+		eslint: {
+            options: {
+                configFile: './.eslintrc'
+            },
+
+            demo: ['<%= dir.demo %>']
+        },
+
+		connect: {
+			options: {
+				port: 8080,
+				hostname: '*'
+			},
+			src: {},
+			dist: {}
+		},
+
+		openui5_connect: {
+			options: {
+				resources: [
+					'<%= dir.bower_components %>/openui5-sap.ui.core/resources',
+					'<%= dir.bower_components %>/openui5-sap.m/resources',
+					'<%= dir.bower_components %>/openui5-sap.ui.layout/resources',
+					'<%= dir.bower_components %>/openui5-themelib_sap_belize/resources',
+				],
+				testresources: [
+					'<%= dir.bower_components %>/openui5-sap.ui.core/test-resources',
+					'<%= dir.bower_components %>/openui5-sap.m/test-resources',
+					'<%= dir.bower_components %>/openui5-sap.ui.layout/test-resources',
+					'<%= dir.bower_components %>/openui5-themelib_sap_belize/test-resources'
+				],
+			},
+			src: {
 				options: {
-					resources: '<%= dir.src %>',
-					dest: '<%= dir.dest %>',
-					compatVersion: '1.44',
-					compress: false
-				},
-				libraries: 'it/designfuture/flatpickr'
+					appresources: '<%= dir.demo %>'
+				}
+			},
+			dist: {
+				options: {
+					appresources: '<%= dir.demo %>'
+				}
 			}
+		},
+
+		openui5_preload: {
+		    library: {
+		        options: {
+		            resources: [
+		                { cwd: '<%= dir.src %>' },
+		                { cwd: '<%= dir.src_flatpickr %>', src: 'flatpickr.js', prefix: 'it/designfuture/flatpickr/3rdparty' }
+		            ],
+		            dest: '<%= dir.dest %>',
+		            compatVersion: '1.44',
+		            compress: false
+		        },
+		        libraries: 'it/designfuture/flatpickr'
+		    }
 		},
 
 		openui5_theme: {
 			library: {
-		    files: [
-		      {
-		        expand: true,
-		        cwd: '<%= dir.src %>',
-		        src: '<%= dir.css_base %>',
-		        dest: '<%= dir.dest %>'
-		      },
-		      {
-		        expand: true,
-		        cwd: '<%= dir.src %>',
-		        src: '<%= dir.css_belize %>',
-		        dest: '<%= dir.dest %>'
-		      },
-		      {
-		        expand: true,
-		        cwd: '<%= dir.src %>',
-		        src: '<%= dir.sap_bluecrystal %>',
-		        dest: '<%= dir.dest %>'
-		      }
-		    ]
-		  }},
+				files: [
+					{
+						expand: true,
+						cwd: '<%= dir.src %>',
+						src: '**/themes/*/library.source.less',
+						dest: '<%= dir.dest %>'
+					}
+				],
+				options: {
+					rootPaths: [
+						'<%= dir.src %>',
+						'<%= dir.node_modules %>'
+					],
+					library: {
+						name: 'it.designfuture.flatpickr'
+					}
+				}
+			}
+		}
 	});
 
 	// These publins provide necessary tasks
+	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-openui5');
+	grunt.loadNpmTasks('grunt-eslint');
+    grunt.loadNpmTasks("grunt-contrib-watch");
+
+	// Server task
+	grunt.registerTask('serve', function(target) {
+		grunt.task.run('openui5_connect:' + (target || 'src') + ':keepalive');
+	});
+
+	// Linting task
+	grunt.registerTask('lint', ['eslint']);
 
 	// Build task
-	grunt.registerTask('build', ['openui5_theme', 'openui5_preload']);
+	grunt.registerTask('build_theme', ['clean', 'openui5_theme']);
+
+	// Build task
+	grunt.registerTask('build', ['clean','openui5_theme', 'openui5_preload', 'copy']);
 
 	// Default task
-	grunt.registerTask('default', ['clean', 'build']);
+	grunt.registerTask('default', [
+		'clean',
+		'build',
+		'serve'
+	]);
 
 };
