@@ -4,9 +4,10 @@ module.exports = function(grunt) {
 		dir: {
 			src: 'src',
 			dest: 'dist',
-			demo: 'demo',
+			demo: 'test/demo',
 			src_flatpickr: 'node_modules/flatpickr/dist',
 			bower_components: 'bower_components',
+			node_modules: 'node_modules',
 			css: 'it/designfuture/flatpickr/themes/',
 			css_base: 'it/designfuture/flatpickr/themes/base/library.source.less',
 			css_belize: 'it/designfuture/flatpickr/themes/sap_belize/library.source.less',
@@ -14,7 +15,12 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-
+			main: {
+				expand: true,
+				cwd: '<%= dir.dest %>/',
+				src: ['**'],
+				dest: '<%= dir.demo %>/thirdparty/',
+			},
 		},
 
 		clean: {
@@ -93,7 +99,7 @@ module.exports = function(grunt) {
 				options: {
 					rootPaths: [
 						'<%= dir.src %>',
-						'node_modules'
+						'<%= dir.node_modules %>'
 					],
 					library: {
 						name: 'it.designfuture.flatpickr'
@@ -123,13 +129,13 @@ module.exports = function(grunt) {
 	grunt.registerTask('build_theme', ['clean', 'openui5_theme']);
 
 	// Build task
-	grunt.registerTask('build', ['openui5_theme', 'openui5_preload']);
+	grunt.registerTask('build', ['clean','openui5_theme', 'openui5_preload', 'copy']);
 
 	// Default task
 	grunt.registerTask('default', [
 		'clean',
 		'build',
-		'serve:demo'
+		'serve'
 	]);
 
 };
