@@ -59,7 +59,11 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | clickOpens | boolean | false | Whether clicking on the input should open the picker. You could disable this if you wish to open the calendar manually with.open()
 | dateFormat | string | "Y-m-d" | A string of characters which are used to define how the date will be displayed in the input box. The supported characters are defined in the table below.
 | dateValue | object | null | Set the initial selected date. Same as preloading a date string into an input's value attribute, but can also handle a Date object
+| hourValue | int | 12 | Initial value of the hour element
+| minuteValue | int | 0 | Initial value of the minute element
+| disabledDates | object[] | [] | Arrays of dates object to be disabled
 | disableMobile | boolean | false | Set disableMobile to true to always use the non-native picker. By default, Flatpickr utilizes native datetime widgets unless certain options (e.g. disable) are used
+| enabledDates | object[] | [] | Arrays of dates object to be enabled
 | enableTime | boolean | false | Enables time picker
 | enableSeconds | boolean | false | Enables seconds in the time picker
 | hourIncrement | int | 1 | Adjusts the step for the hour input (incl. scrolling)
@@ -72,7 +76,6 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | shorthandCurrentMonth | boolean | false | Show the month using the shorthand version (ie, Sep instead of September)
 | static | boolean | false | Position the calendar inside the wrapper and next to the input element. (Leave false unless you know what you're doing.)
 | time_24hr | boolean | false | Displays time picker in 24 hour mode without AM/PM selection when enabled
-| utc | boolean | false | When true, dates will parsed, formatted, and displayed in UTC. It's recommended that date strings contain the timezone, but not necessary
 | weekNumbers | boolean | false | Enables display of week numbers in calendar
 
 ## Events
