@@ -14,6 +14,20 @@ module.exports = function(grunt) {
 			sap_bluecrystal: 'it/designfuture/flatpickr/themes/sap_bluecrystal/library.source.less'
 		},
 
+		watch: {
+			options: {
+				livereload: true
+			},
+			css: {
+				files: ['<%= dir.src %>/**/*.less', '<%= dir.src %>/**/*.css'],
+				tasks: ['build']
+			},
+			js: {
+				files: ['<%= dir.src %>/**/*.js'],
+				tasks: ['build']
+			}
+		},
+
 		copy: {
 			main: {
 				expand: true,
@@ -38,7 +52,8 @@ module.exports = function(grunt) {
 		connect: {
 			options: {
 				port: 8080,
-				hostname: '*'
+				hostname: '*',
+				//livereload: 35729
 			},
 			src: {},
 			dist: {}
@@ -97,6 +112,9 @@ module.exports = function(grunt) {
 					}
 				],
 				options: {
+					compiler: {
+						compress: true
+					},
 					rootPaths: [
 						'<%= dir.src %>',
 						'<%= dir.node_modules %>'
@@ -119,7 +137,8 @@ module.exports = function(grunt) {
 
 	// Server task
 	grunt.registerTask('serve', function(target) {
-		grunt.task.run('openui5_connect:' + (target || 'src') + ':keepalive');
+		grunt.task.run('openui5_connect:' + (target || 'src') );
+		grunt.task.run('watch');
 	});
 
 	// Linting task
