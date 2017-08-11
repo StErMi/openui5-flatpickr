@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 				tasks: ['build']
 			},
 			js: {
-				files: ['<%= dir.src %>/**/*.js'],
+				files: ['<%= dir.src %>/**/*.js', '<%= dir.src %>/**/*.xml', '<%= dir.src %>/**/*.json', '<%= dir.src %>/**/*.html', '<%= dir.src %>/**/*.properties'],
 				tasks: ['build']
 			}
 		},
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 			options: {
 				port: 8080,
 				hostname: '*',
-				//livereload: 35729
+				livereload: true
 			},
 			src: {},
 			dist: {}
@@ -113,7 +113,7 @@ module.exports = function(grunt) {
 				],
 				options: {
 					compiler: {
-						compress: true
+						compress: false
 					},
 					rootPaths: [
 						'<%= dir.src %>',
