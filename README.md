@@ -61,6 +61,7 @@ And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
 | dateValue | object | null | Set the initial selected date. Same as preloading a date string into an input's value attribute, but can also handle a Date object
 | hourValue | int | 12 | Initial value of the hour element
 | minuteValue | int | 0 | Initial value of the minute element
+| secondsValue | int | 0 | Initial value of the seconds element
 | disabledDates | object[] | [] | Arrays of dates object to be disabled
 | disableMobile | boolean | false | Set disableMobile to true to always use the non-native picker. By default, Flatpickr utilizes native datetime widgets unless certain options (e.g. disable) are used
 | enabledDates | object[] | [] | Arrays of dates object to be enabled

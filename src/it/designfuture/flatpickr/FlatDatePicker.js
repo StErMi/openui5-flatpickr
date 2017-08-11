@@ -84,12 +84,17 @@ sap.ui.define([
 				/**
 				 * Initial value of the hour element.
 				 */
-				hourValue : {type : "object", group : "Appearance", defaultValue : 12, bindable: "bindable"},
+				hourValue : {type : "int", group : "Appearance", defaultValue : 12, bindable: "bindable"},
 				
 				/**
 				 * Initial value of the minute element.
 				 */
-				minuteValue : {type : "object", group : "Appearance", defaultValue : 0, bindable: "bindable"},
+				minuteValue : {type : "int", group : "Appearance", defaultValue : 0, bindable: "bindable"},
+				
+				/**
+				 * Initial value of the seconds element.
+				 */
+				secondsValue : {type : "int", group : "Appearance", defaultValue : 0, bindable: "bindable"},
 				
 				/**
 				 * Arrays of dates object to be disabled
@@ -372,6 +377,7 @@ sap.ui.define([
 			    defaultDate: this.getDateValue(),
 			    defaultHour: this.getHourValue(),
 			    defaultMinute: this.getMinuteValue(),
+			    defaultSeconds: this.getSecondsValue(),
 			    disable: this.getDisabledDates(),
 				disableMobile: this.getDisableMobile(),
 			    enable: this.getEnabledDates(),
@@ -647,6 +653,14 @@ sap.ui.define([
 				this.__flatPickr.set("defaultMinute", value);
 			}
 			this.setProperty("minuteValue", value, false);
+			return this;
+		},
+		
+		setSecondsValue: function(value) {
+			if( this.__flatPickr ) {
+				this.__flatPickr.set("defaultSeconds", value);
+			}
+			this.setProperty("secondsValue", value, false);
 			return this;
 		},
 		

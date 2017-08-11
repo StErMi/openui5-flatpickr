@@ -76,6 +76,8 @@
 							clickOpens="false"
 							dateFormat="d/m/Y H:i"
 							class="sapUiMediumMargin"
+							hourValue="11"
+							minuteValue="12"
 							enableTime="true"
 						/>
 					</Panel>
