@@ -1,0 +1,27 @@
+{
+	"it.designfuture.flatpickr": {
+        "icon": "sap-icon://appointment",
+        "name": "Flat Date Picker",
+		"description": "Easily embed a powerful and stunning Date Time Picker" ,
+		"source": "https://github.com/StErMi/openui5-flatpickr",
+		"documentation": "https://github.com/StErMi/openui5-flatpickr/blob/master/README.md",
+		"demo": "https://stermi.github.io/openui5-flatpickr/test/demo/",
+		"version": "0.0.1",
+		"license": "Apache 2.0",
+		"content": {
+			"QRCode": {
+				"id": "FlatDatePicker",
+				"name": "Flat Date Picker",
+				"type": "control",
+				"version": "0.0.1",
+				"description": "Generate and easily embed QR Code inside your SAPUI5 Application",
+				"samples": [{
+					"id": "Flat Date Picker",
+					"name": "DateTime Picker",
+					"description": "Easily embed a powerful and stunning Date Time Picker",
+					"url": "https://stermi.github.io/openui5-flatpickr/test/demo/"
+				}]
+			}
+		}
+	}
+}
