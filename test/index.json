@@ -9,15 +9,15 @@
 		"version": "0.0.1",
 		"license": "Apache 2.0",
 		"content": {
-			"QRCode": {
+			"FlatDatePicker": {
 				"id": "FlatDatePicker",
 				"name": "Flat Date Picker",
 				"type": "control",
 				"version": "0.0.1",
-				"description": "Generate and easily embed QR Code inside your SAPUI5 Application",
+				"description": "Easily embed a powerful and stunning Date Time Picker",
 				"samples": [{
-					"id": "Flat Date Picker",
-					"name": "DateTime Picker",
+					"id": "FlatDatePicker",
+					"name": "Flat Date Picker",
 					"description": "Easily embed a powerful and stunning Date Time Picker",
 					"url": "https://stermi.github.io/openui5-flatpickr/test/demo/"
 				}]
